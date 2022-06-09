@@ -13,8 +13,8 @@ jobs:
         run: |
           chmod +x /opt/st/stm32cubeide_1.9.0/headless-build.sh
           cd /opt/st/stm32cubeide_1.9.0
-          ./headless-build.sh -data /workspace -import /__w/repository_name -cleanBuild 'project_name' -markerType cdt || { echo "Build Failed"; exit 1; }
+          ./headless-build.sh -data /workspace -import /__w/actions_pi -cleanBuild 'stm32_hil' -markerType cdt || { echo "Build Failed"; exit 1; }
       - uses: actions/upload-artifact@v3
         with:
           name: build_artifact
-          path: /__w/repository_name/repository_name/Release/project_name.bin
+          path: /__w/actions_pi/actions_pi/Release/stm32_hil.bin
