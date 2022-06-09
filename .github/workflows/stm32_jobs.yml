@@ -1,20 +1,20 @@
 name: STM32 CI
-on: 
+on:
   push:
     branches: main
 
 jobs:
   build:
-  runs-on: ubuntu-latest
-  container: niuslar/stm32-cubeide-headless:latest
-  steps:
-    - uses: actions/checkout@v3
-    - name: Build App
-      run: |
-        chmod +x /opt/st/stm32cubeide_1.9.0/headless-build.sh
-        cd /opt/st/stm32cubeide_1.9.0
-        ./headless-build.sh -data /workspace -import /__w/repository_name -cleanBuild 'project_name' -markerType cdt || { echo "Build Failed"; exit 1; }
-    - uses: actions/upload-artifact@v3
-      with:
-        name: build_artifact
-        path: /__w/repository_name/repository_name/Release/project_name.bin
+    runs-on: ubuntu-latest
+    container: niuslar/stm32-cubeide-headless:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build App
+        run: |
+          chmod +x /opt/st/stm32cubeide_1.9.0/headless-build.sh
+          cd /opt/st/stm32cubeide_1.9.0
+          ./headless-build.sh -data /workspace -import /__w/repository_name -cleanBuild 'project_name' -markerType cdt || { echo "Build Failed"; exit 1; }
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build_artifact
+          path: /__w/repository_name/repository_name/Release/project_name.bin
