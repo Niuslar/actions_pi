@@ -30,5 +30,5 @@ jobs:
       - shell: bash
         run: | # This is to run multiple lines of commands 
           wget https://raw.githubusercontent.com/Niuslar/stm32f411_flash/main/stm32_flash_loader.py 
-          stm32_flash_loader.py HIL_Example.bin
+          python3 stm32_flash_loader.py HIL_Example.bin
           rm HIL_Example.bin stm32_flash_loader.py
