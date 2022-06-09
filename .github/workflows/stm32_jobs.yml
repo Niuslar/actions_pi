@@ -16,7 +16,7 @@ jobs:
           ./headless-build.sh -data /workspace -import /__w/actions_pi/actions_pi -cleanBuild 'HIL_Example' -markerType cdt || { echo "Build Failed"; exit 1; }
       - uses: actions/upload-artifact@v3
         with:
-          name: build_artifact
+          name: release_build
           path: /__w/actions_pi/actions_pi/Release/HIL_Example.bin
 
   flash_release:
