@@ -19,16 +19,16 @@ jobs:
           name: build_artifact
           path: /__w/actions_pi/actions_pi/Release/HIL_Example.bin
 
-flash_release:
-  runs-on: self-hosted
-  needs: build
-  steps: 
-    - name: Download Release Build    
-      uses: actions/download-artifact@v3
-      with: 
-      name: release_build  # This is the name we gave the build artifact before
-    - shell: bash
-      run: | # This is to run multiple lines of commands 
-        wget https://raw.githubusercontent.com/Niuslar/stm32f411_flash/main/stm32_flash_loader.py 
-        stm32_flash_loader.py HIL_Example.bin
-        rm HIL_Example.bin stm32_flash_loader.py
+  flash_release:
+    runs-on: self-hosted
+    needs: build
+    steps: 
+      - name: Download Release Build    
+        uses: actions/download-artifact@v3
+        with: 
+        name: release_build  # This is the name we gave the build artifact before
+      - shell: bash
+        run: | # This is to run multiple lines of commands 
+          wget https://raw.githubusercontent.com/Niuslar/stm32f411_flash/main/stm32_flash_loader.py 
+          stm32_flash_loader.py HIL_Example.bin
+          rm HIL_Example.bin stm32_flash_loader.py
