@@ -1,2 +1,3 @@
 HIL_Example Debug.launch
-Debug/
+Debug/*
+!Debug/makefile

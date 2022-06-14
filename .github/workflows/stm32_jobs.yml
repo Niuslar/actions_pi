@@ -6,18 +6,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: niuslar/stm32-cubeide-headless:latest
+    container: niuslar/stm32_arm_gcc_build:latest
     steps:
       - uses: actions/checkout@v3
       - name: Build App
         run: |
-          chmod +x /opt/st/stm32cubeide_1.9.0/headless-build.sh
-          cd /opt/st/stm32cubeide_1.9.0
-          ./headless-build.sh -data /workspace -import /__w/actions_pi/actions_pi -cleanBuild 'HIL_Example' -markerType cdt || { echo "Build Failed"; exit 1; }
+          cd Debug
+          make all || { echo "Build Failed"; exit 1; }
       - uses: actions/upload-artifact@v3
         with:
           name: release_build
-          path: /__w/actions_pi/actions_pi/Release/HIL_Example.bin
+          path: /__w/actions_pi/actions_pi/Debug/HIL_Example.bin
 
   flash_release:
     runs-on: self-hosted
