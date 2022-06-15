@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ENV STM32CUBEIDE_VERSION 1.8.0 
+ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH $PATH:"${PATH}:/opt/st/stm32cubeide_${STM32CUBEIDE_VERSION}"
 
 # Download tools
@@ -14,7 +15,6 @@ RUN chmod +x installer.sh stm32cubeide-installer.sh && \
     ./installer.sh && \
     rm installer.sh stm32cubeide-installer.sh
 
-# Install dependencies
-RUN apt-get -y -f install
+WORKDIR /workspace
 
 
