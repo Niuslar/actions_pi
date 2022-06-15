@@ -25,11 +25,11 @@ jobs:
       - name: Download Release Build    
         uses: actions/download-artifact@v3
         with: 
-          name: release_build  # This is the name we gave the build artifact before
+          name: release_build 
       - name: Download Flash Script
-        run: | # This is to run multiple lines of commands 
+        run: | 
           wget https://raw.githubusercontent.com/Niuslar/stm32f411_flash/main/stm32_flash_loader.py 
       - name: Flash STM32 board
-        run: | # This is to run multiple lines of commands 
+        run: |
           python3 stm32_flash_loader.py HIL_Example.bin
           rm HIL_Example.bin stm32_flash_loader.py
